@@ -38,7 +38,7 @@ public class FlowDefinition<Context,Result> implements Step<Context,Result> {
                     holder = step.execute(context);
                     if (holder.isTerminate()) {
                         holder.setCurrentStepPath(getCurrentFlowInfo());
-                        break;;
+                        break;
                     }
                 } catch (MyException me) {
                     System.out.println("[error] 执行："+getCurrentFlowInfo()+"业务报错");
