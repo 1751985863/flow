@@ -28,7 +28,7 @@ public class StepBuilder<Context,Result>{
     }
 
     public FlowDefinitionBuilder<Context,Result> end(Function<Context,Result> mapper) {
-        flow.addStep(new EndStep<>(step,flow.getName(),predicate,mapper));
+        flow.addStep(new EndStep<>(step,flow.getName(),mapper,predicate));
         return flow;
     }
 

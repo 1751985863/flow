@@ -9,7 +9,7 @@ public class EndStep<Context,Result> extends PredicatableStep<Context,Result>{
 
     private Function<Context,Result> mapper;
 
-    public EndStep(String name, String flowName, Predicate<Context> predicate, Function<Context, Result> mapper) {
+    public EndStep(String name, String flowName,Function<Context, Result> mapper, Predicate<Context> predicate ) {
         super(name, flowName, predicate);
         this.mapper = mapper;
     }

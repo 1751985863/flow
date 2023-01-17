@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.LinkedList;
 import java.util.List;
 
-@Slf4j
+
 public class FlowDefinition<Context,Result> implements Step<Context,Result> {
 
     private static ThreadLocal<LinkedList<Step>> stepCache = ThreadLocal.withInitial(LinkedList::new);
@@ -45,15 +45,25 @@ public class FlowDefinition<Context,Result> implements Step<Context,Result> {
                     me.printStackTrace();
                     throw me;
                 } catch (Exception e) {
-                    System.out.println("[error] 执行："+getCurrentFlowInfo()+"业务报错");
+                    System.out.println("[error] 执行："+getCurrentFlowInfo()+"未知报错");
                     e.printStackTrace();
                     throw e;
                 }finally {
                     stepCache.get().removeLast();
                 }
+            } else {
+                stepCache.get().addLast(step);
+                System.out.println("跳过："+ getCurrentFlowInfo());
+                stepCache.get().removeLast();
             }
         }
-        return null;
+        try {
+            result = (Result) holder.getResult();
+        } catch (Exception e) {
+            System.out.println("流程$"+name+"最终获取返回报文报错");
+        }
+        System.out.println("流程$"+name+"结束：返回"+result);
+        return holder;
     }
 
     @Override

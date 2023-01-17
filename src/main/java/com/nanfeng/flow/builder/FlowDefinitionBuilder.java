@@ -7,7 +7,7 @@ public class FlowDefinitionBuilder<Context,Result> extends AbstractFlowDefinitio
 
     protected ConditionalStepBuilder conditionalStepBuilder;
 
-    public FlowDefinitionBuilder(String name, ConditionalStepBuilder conditionalStepBuilder) {
+    public FlowDefinitionBuilder(String name, ConditionalStepBuilder<Context,Result> conditionalStepBuilder) {
         super(name);
         this.conditionalStepBuilder = conditionalStepBuilder;
     }

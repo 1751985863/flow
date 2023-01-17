@@ -10,7 +10,13 @@ public class CloseStep<Context>  extends PredicatableStep<Context, Void>{
 
     private Consumer<Context> consumer;
 
-    public CloseStep(String name, String flowName, Predicate<Context> predicate, Consumer<Context> consumer) {
+    public CloseStep(String name, String flowName,Consumer<Context> consumer) {
+        this(name,flowName,consumer,null);
+
+        this.consumer = consumer;
+    }
+
+    public CloseStep(String name, String flowName, Consumer<Context> consumer,Predicate<Context> predicate) {
         super(name, flowName, predicate);
         this.consumer = consumer;
     }
